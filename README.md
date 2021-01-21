@@ -2,58 +2,65 @@
 # テーブル設計
 
 ## users テーブル
-
-| Column     | Type   | Options     |
-| ---------- | ------ | ----------- |
-| email      | string | null: false |
-| password   | string | null: false |
-| name       | string | null: false |
-| profile    | text   | null: false |
-| occupation | text   | null: false |
-| position   | text   | null: false |
-
-### Association
-
-- has_many :prototype_users
-- has_many :prototypes, through: prototype_users
-- has_many :comments
-
-## prototypes テーブル
-
-| Column     | Type       | Options                        |
-| ---------- | ---------- | ------------------------------ |
-| title      | string     | null: false                    |
-| catch_copy | text       | null: false                    |
-| concept    | text       | null: false                    |
-| user       | references | null: false, foreign_key: true |
+| Column             | Type   | Options                  |
+| ------------------ | ------ | ------------------------ |
+| nickname           | string | null: false              |
+| email              | string | null: false,unique: true |
+| encrypted_password | string | null: false              |
+| first_name         | string | null: false              |
+| last_name          | string | null: false              |
+| kana_first_name    | string | null: false              |
+| kana_last_name     | string | null: false              |
+| birthday           | date   | null: false              |
 
 ### Association
+- has_many :items
+- has_many :purchases
 
-- has_many :prototype_users
-- has_many :users, through: prototype_users
-- has_many :comments
 
-## prototype_users テーブル
 
+## items テーブル
+| Column               | Type       | Options                        |
+| -------------------- | ---------- | ------------------------------ |
+| product_name         | string     | null: false                    |
+| product_description  | text       | null: false                    |
+| category_id          | integer    | null: false                    |
+| product_condition_id | integer    | null: false                    |
+| shipping_charge_id   | integer    | null: false                    |
+| shipping_area_id     | integer    | null: false                    |
+| days_to_ship_id      | integer    | null: false                    |
+| selling_price        | integer    | null: false                    |
+| user                 | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to :user
+- has_one:purchase 
+
+
+
+## purchases テーブル
 | Column    | Type       | Options                        |
 | --------- | ---------- | ------------------------------ |
 | user      | references | null: false, foreign_key: true |
-| prototype | references | null: false, foreign_key: true |
+| item      | references | null: false, foreign_key: true |
 
 ### Association
-
-- belongs_to :prototype
 - belongs_to :user
+- belongs_to :item
+- has_one:enter_delivery_address
 
-## comments テーブル
 
-| Column    | Type       | Options                        |
-| --------- | ---------- | ------------------------------ |
-| text      | text       |                                |
-| user      | references | null: false, foreign_key: true |
-| prototype | references | null: false, foreign_key: true |
+
+## enter_delivery_addresses テーブル
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| postal_code      | string     | null: false                    |
+| shipping_area_id | integer    | null: false                    |
+| municipality     | string     | null: false                    |
+| address          | string     | null: false                    |
+| building_name    | string     |                                |
+| phone_number     | string     | null: false                    |
+| purchase         | references | null: false, foreign_key: true |
 
 ### Association
-
-- belongs_to :prototype
-- belongs_to :user
+- belongs_to:purchase
