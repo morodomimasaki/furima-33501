@@ -9,10 +9,6 @@ class User < ApplicationRecord
 
   with_options presence: true do
     validates :nickname
-    validates :first_name
-    validates :last_name
-    validates :kana_first_name
-    validates :kana_last_name
     validates :birthday
     validates :first_name, :last_name, format: { with: /\A[ぁ-んァ-ン一-龥々]+\z/, message: 'is invalid. Input full-width characters.' }
     validates :kana_first_name, :kana_last_name,
