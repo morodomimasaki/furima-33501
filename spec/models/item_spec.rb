@@ -68,8 +68,18 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Selling price is invalid. Input full-width katakana characters.")
       end
-      it 'selling_priceが半角数字以外では登録できないこと' do
+      it 'selling_priceが全角文字では登録できないこと' do
         @item.selling_price = '５００'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Selling price is invalid. Input full-width katakana characters.")
+      end
+      it 'selling_priceが半角英数混合では登録できないこと' do
+        @item.selling_price = 'mm111'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Selling price is invalid. Input full-width katakana characters.")
+      end
+      it 'selling_priceが半角英語だけでは登録できないこと' do
+        @item.selling_price = 'test'
         @item.valid?
         expect(@item.errors.full_messages).to include("Selling price is invalid. Input full-width katakana characters.")
       end
