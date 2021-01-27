@@ -24,34 +24,34 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Product name can't be blank")
       end
       it 'product_descriptionが空では登録できない' do
-        @item.product_description =''
+        @item.product_description = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Product description can't be blank")
       end
       it 'category_idが空では登録できない' do
         @item.category_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 0")
+        expect(@item.errors.full_messages).to include('Category must be other than 0')
       end
       it 'product_condition_idが空では登録できない' do
         @item.product_condition_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Product condition must be other than 0")
+        expect(@item.errors.full_messages).to include('Product condition must be other than 0')
       end
       it 'shipping_charge_idが空では登録できない' do
         @item.shipping_charge_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping charge must be other than 0")
+        expect(@item.errors.full_messages).to include('Shipping charge must be other than 0')
       end
       it 'shipping_area_idが空では登録できない' do
         @item.shipping_area_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping area must be other than 0")
+        expect(@item.errors.full_messages).to include('Shipping area must be other than 0')
       end
       it 'days_to_ship_idが空では登録できない' do
         @item.days_to_ship_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Days to ship must be other than 0")
+        expect(@item.errors.full_messages).to include('Days to ship must be other than 0')
       end
       it 'selling_priceが空では登録できない' do
         @item.selling_price = ''
@@ -61,27 +61,27 @@ RSpec.describe Item, type: :model do
       it 'selling_priceが299円以下であれば登録できない' do
         @item.selling_price = 200
         @item.valid?
-        expect(@item.errors.full_messages).to include("Selling price is invalid. Input full-width katakana characters.")
+        expect(@item.errors.full_messages).to include('Selling price is invalid. Input full-width katakana characters.')
       end
       it 'selling_priceが10,000,000以上であれば登録できない' do
-        @item.selling_price = 10,000,000
+        @item.selling_price = 10, 0o00, 0o00
         @item.valid?
-        expect(@item.errors.full_messages).to include("Selling price is invalid. Input full-width katakana characters.")
+        expect(@item.errors.full_messages).to include('Selling price is invalid. Input full-width katakana characters.')
       end
       it 'selling_priceが全角文字では登録できないこと' do
         @item.selling_price = '５００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Selling price is invalid. Input full-width katakana characters.")
+        expect(@item.errors.full_messages).to include('Selling price is invalid. Input full-width katakana characters.')
       end
       it 'selling_priceが半角英数混合では登録できないこと' do
         @item.selling_price = 'mm111'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Selling price is invalid. Input full-width katakana characters.")
+        expect(@item.errors.full_messages).to include('Selling price is invalid. Input full-width katakana characters.')
       end
       it 'selling_priceが半角英語だけでは登録できないこと' do
         @item.selling_price = 'test'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Selling price is invalid. Input full-width katakana characters.")
+        expect(@item.errors.full_messages).to include('Selling price is invalid. Input full-width katakana characters.')
       end
     end
   end
