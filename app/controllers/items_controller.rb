@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, except: [:index, :new, :create]
-  before_action :uretara_hennsyuudekinai, only: [:edit]
+  before_action :current_user_denai, only: [:edit]
 
 
   def index
@@ -50,7 +50,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def uretara_hennsyuudekinai
+  def current_user_denai
     redirect_to root_path unless current_user == @item.user
   end
 end
