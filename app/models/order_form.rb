@@ -1,6 +1,6 @@
 class OrderForm
   include ActiveModel::Model
-  attr_accessor :user_id,:item_id,:postal_code, :shipping_area_id, :municipality, :address, :building_name, :phone_number
+  attr_accessor :user_id,:item_id,:postal_code, :shipping_area_id, :municipality, :address, :building_name, :phone_number, :token
 
   # ここにバリデーションの処理を書く
   with_options presence: true do
@@ -11,6 +11,7 @@ class OrderForm
     validates :address
     validates :municipality 
     validates :phone_number, length: { maximum: 11, message: "is out of setting range" }
+    validates :token
   end
   
   def save
