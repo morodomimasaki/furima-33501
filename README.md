@@ -51,7 +51,7 @@
 
 
 
-## enter_delivery_addresses テーブル
+## addresses テーブル
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
 | postal_code      | string     | null: false                    |
