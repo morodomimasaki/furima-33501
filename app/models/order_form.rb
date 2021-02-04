@@ -16,7 +16,6 @@ class OrderForm
   end
   validates :phone_number, format: { with: /\A[0-9]+\z/ }
 
-
   def save
     # 購入機能を保存
     purchase = Purchase.create(user_id: user_id, item_id: item_id)
