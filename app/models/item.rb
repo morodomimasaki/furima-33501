@@ -22,7 +22,7 @@ class Item < ApplicationRecord
     validates :product_name
     validates :product_description
     validates :selling_price,
-              numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999_999,
+              numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999,
                               message: 'is invalid. Input full-width katakana characters.' }
     validates :selling_price, format: { with: /\A[a-zA-Z0-9]+\z/, message: 'is invalid. Input full-width katakana characters.' }
   end
