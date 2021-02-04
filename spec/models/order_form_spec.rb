@@ -29,8 +29,13 @@ RSpec.describe OrderForm, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
-      it 'shipping_area_idが空では登録できない' do
+      it 'shipping_area_idが0では登録できない' do
         @order.shipping_area_id = 0
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Shipping area can't be blank")
+      end
+      it 'shipping_area_idが空では登録できない' do
+        @order.shipping_area_id = nil
         @order.valid?
         expect(@order.errors.full_messages).to include("Shipping area can't be blank")
       end
