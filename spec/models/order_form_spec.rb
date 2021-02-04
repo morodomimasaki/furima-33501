@@ -10,11 +10,14 @@ RSpec.describe OrderForm, type: :model do
     end
 
     context '商品購入できるとき' do
-      it 'postal_code、shipping_area_id、municipality、address、phone_number,tokenが存在すれば登録できる' do
-        expect(@order).to be_valid
-      end
+    it 'postal_code、shipping_area_id、municipality、address、phone_number,tokenが存在すれば登録できる' do
+      expect(@order).to be_valid
     end
-
+    it 'building_nameが空でも登録できる' do
+      @order.building_name = nil
+      expect(@order).to be_valid
+    end
+  end
     context '商品購入できないとき' do
       it 'postal_codeが空では登録できない' do
         @order.postal_code = nil
@@ -51,10 +54,27 @@ RSpec.describe OrderForm, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include('Phone number is out of setting range')
       end
+
+      it 'phone_numberが英数混合では登録できないこと' do
+        @order.phone_number = '0800mmmm'
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Phone number is invalid")
+      end
+
       it 'tokenが空では登録できないこと' do
         @order.token = nil
         @order.valid?
         expect(@order.errors.full_messages).to include("Token can't be blank")
+      end
+      it 'user_idが空では登録できない' do
+        @order.user_id = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idが空では登録できない' do
+        @order.item_id = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Item can't be blank")
       end
     end
   end

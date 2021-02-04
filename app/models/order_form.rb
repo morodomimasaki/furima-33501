@@ -14,6 +14,8 @@ class OrderForm
     validates :phone_number, length: { maximum: 11, message: 'is out of setting range' }
     validates :token
   end
+  validates :phone_number, format: { with: /\A[0-9]+\z/ }
+
 
   def save
     # 購入機能を保存
