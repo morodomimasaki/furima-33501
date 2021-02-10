@@ -3,16 +3,23 @@
 <%# 商品の概要 %>
 <div class="item-show">
   <div class="item-box">
-    <h2 class="name">
-      <%= @item.product_name %>
+   <h2 class="name">
+       <%= @item.product_name %>
     </h2>
-    <div class='item-img-content'>
-      <%= image_tag @item.image ,class:"item-box-img" %>
-      <% if @item.purchase != nil %>
-      <div class='sold-out'>
-        <span>Sold Out!!</span>
-      </div>
-      <% end %> 
+
+   <div class='item-img-content'>
+          <%= image_tag @item.images[0], class: "item-box-img"%>
+          <% if @item.purchase != nil %>
+         <div class='sold-out'>
+           <span>Sold Out!!</span>
+           <% end %> 
+         </div>
+   </div>
+
+   <div class='item-img-contents'>
+        <% @item.images.each do |image| %>
+         <%= image_tag image, class:'another-item-box-img' %>
+        <% end %>
     </div>
     <div class="item-price-box">
       <span class="item-price">
@@ -78,7 +85,7 @@
         <span>不適切な商品の通報</span>
       </div>
     </div>
-  </div>
+  
   <%# /商品の概要 %>
 
   <div class="comment-box">
@@ -104,6 +111,7 @@
     </a>
   </div>
   <a href=“#” class=‘another-item’><%= @item.category.name %>をもっと見る</a>
+  </div>
 </div>
 
 <%= render "shared/footer" %>

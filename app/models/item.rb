@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   belongs_to :user
   has_one :purchase
-  has_one_attached :image
+  has_many_attached :images
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :product_condition
@@ -18,7 +18,7 @@ class Item < ApplicationRecord
   end
 
   with_options presence: true do
-    validates :image
+    validates :images
     validates :product_name
     validates :product_description
     validates :selling_price,

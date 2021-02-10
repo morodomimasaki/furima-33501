@@ -204,3 +204,25 @@
   font-weight: bold;
   font-size: 23px;
 }
+
+.another-item-box-img {
+  background-color:white;
+  margin: 30px 0px 8px;
+  width: 300px;
+  height: 300px;
+}
+.item-box-img {
+  height: 50vh;
+  width: 60vw;
+  min-height: 500px;
+  background-color: #cdcaca;
+  object-fit: contain;
+}
+
+.first-item-box-img {
+  height: 50vh;
+  width: 60vw;
+  min-height: 500px;
+  background-color: white;
+  object-fit: contain;
+}
