@@ -1,7 +1,10 @@
 FactoryBot.define do
+
   factory :item do
     after(:build) do |item|
-      item.image.attach(io: File.open('public/images/test_image.jpg'), filename: 'test_image.png')
+      3.times do
+        item.images.attach(io: File.open('public/images/test_image.jpg'), filename: 'test_image.png')
+      end
     end
     product_name                  { '商品名' }
     product_description           { '商品の説明' }
