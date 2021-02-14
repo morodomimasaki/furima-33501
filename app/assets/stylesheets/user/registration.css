@@ -153,8 +153,20 @@
 }
 
 .register-info {
-  margin: 30px 180px 0 0;
+  margin: 15px 0 0 0;
   color: #0099e8;
-  text-align: right;
+  text-align: center;
   cursor: pointer;
+}
+
+.form-group0 {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.SNS2{
+  color: #0099e8;
 }
