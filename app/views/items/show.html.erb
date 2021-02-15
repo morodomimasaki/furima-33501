@@ -85,23 +85,26 @@
         <span>不適切な商品の通報</span>
       </div>
     </div>
-  
-  <%# /商品の概要 %>
-
   <div class="comment-box">
-    <form>
-      <textarea class="comment-text"></textarea>
+   <div id='messages'>
+     <% @messages.reverse_each do |message| %>
+       <p><%= message.text %></p>
+     <% end %>
+   </div>
+   <%= form_with model: [@item,@message] do |f| %>
+      <%= f.text_area :text , class: "comment-text"%>
       <p class="comment-warn">
         相手のことを考え丁寧なコメントを心がけましょう。
         <br>
         不快な言葉遣いなどは利用制限や退会処分となることがあります。
       </p>
-      <button type="submit" class="comment-btn">
+      <%= f.button type: "submit" , class: "comment-btn" do %>
         <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
         <span>コメントする<span>
-      </button>
-    </form>
+      <% end %>
+    <% end %>
   </div>
+
   <div class="links">
     <a href="#" class="change-item-btn">
       ＜ 前の商品
